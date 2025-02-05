@@ -26,8 +26,8 @@ const Logo = ({ isCollapsed }) => {
       {!isCollapsed ? (
         <LinkStyled to="/home">
           {/* <img src={logo} alt="logo" className="h-16" priority /> */}
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-700 to-blue-500 text-transparent bg-clip-text text-center my-5">
-            Logistics
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-700 to-blue-500 text-transparent bg-clip-text text-center my-5">
+            The Logistics
           </h1>
         </LinkStyled>
       ) : (

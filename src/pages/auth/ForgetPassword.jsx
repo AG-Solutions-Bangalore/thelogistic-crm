@@ -64,8 +64,8 @@ const ForgetPassword = () => {
           <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg  shadow-blue-600 ">
             <div className="flex justify-center mb-4">
               {/* <img src={logo} alt="Company Logo" className="w-35 h-35" /> */}
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-700 to-blue-500 text-transparent bg-clip-text text-center my-5">
-                Logistics
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-700 to-blue-500 text-transparent bg-clip-text text-center my-5">
+                The Logistics
               </h1>
             </div>
             <Typography
