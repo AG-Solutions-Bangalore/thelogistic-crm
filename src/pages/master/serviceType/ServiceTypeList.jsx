@@ -5,7 +5,11 @@ import axios from "axios";
 import BASE_URL from "../../../base/BaseUrl";
 import { IconEdit, IconPlus } from "@tabler/icons-react";
 import { MantineReactTable, useMantineReactTable } from "mantine-react-table";
-import { MasterServiceTypeCreate, MasterServiceTypeEdit } from "../../../components/buttonIndex/ButtonComponents";
+import {
+  MasterServiceTypeCreate,
+  MasterServiceTypeEdit,
+} from "../../../components/buttonIndex/ButtonComponents";
+import { CreateButton } from "../../../components/common/ButtonColors";
 
 const ServiceTypeList = () => {
   const [serviceTypeData, setServiceTypeData] = useState(null);
@@ -70,7 +74,6 @@ const ServiceTypeList = () => {
               <MasterServiceTypeEdit
                 onClick={() => navigate(`/master/servicetype-edit/${id}`)}
                 className="flex items-center space-x-2"
-              
               />
             </div>
           );
@@ -112,8 +115,7 @@ const ServiceTypeList = () => {
               </button> */}
               <MasterServiceTypeCreate
                 onClick={() => navigate("/master/createServicetype")}
-                className=" flex flex-row items-center gap-1 text-center text-sm font-[400] cursor-pointer  w-[8rem] text-white bg-blue-600 hover:bg-red-700 p-2 rounded-lg shadow-md"
-              
+                className={`${CreateButton} w-full`}
               />
             </div>
           </div>

@@ -10,6 +10,7 @@ import {
   PaymentAdvanceCreate,
   PaymentAdvanceEdit,
 } from "../../../components/buttonIndex/ButtonComponents";
+import { CreateButton } from "../../../components/common/ButtonColors";
 
 const AdvancePaymentList = () => {
   const [advancePaymentData, setAdvancePaymentData] = useState(null);
@@ -141,7 +142,7 @@ const AdvancePaymentList = () => {
             <div className="flex gap-2">
               <PaymentAdvanceCreate
                 onClick={() => navigate("/payment/createAdvance")}
-                className=" flex flex-row items-center gap-1 text-center text-sm font-[400] cursor-pointer  w-[7rem] text-white bg-blue-600 hover:bg-red-700 p-2 rounded-lg shadow-md"
+                className={CreateButton}
               ></PaymentAdvanceCreate>
             </div>
           </div>

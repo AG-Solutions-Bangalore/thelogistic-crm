@@ -5,6 +5,10 @@ import BASE_URL from "../../../base/BaseUrl";
 import axios from "axios";
 import { toast } from "sonner";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
+import {
+  BackButton,
+  CreateButton,
+} from "../../../components/common/ButtonColors";
 
 const VType = [
   {
@@ -331,7 +335,7 @@ const CreateVendor = () => {
           <div className="flex flex-wrap gap-4 justify-start">
             <button
               type="submit"
-              className="text-center text-sm font-[400] cursor-pointer  w-36 text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
+              className={CreateButton}
               disabled={isButtonDisabled}
             >
               {isButtonDisabled ? "Sumbitting..." : "Sumbit"}
@@ -339,7 +343,7 @@ const CreateVendor = () => {
 
             <button
               type="button"
-              className="text-center text-sm font-[400] cursor-pointer  w-36 text-white bg-red-600 hover:bg-red-400 p-2 rounded-lg shadow-md"
+              className={BackButton}
               onClick={() => {
                 navigate("/master/vendor-list");
               }}

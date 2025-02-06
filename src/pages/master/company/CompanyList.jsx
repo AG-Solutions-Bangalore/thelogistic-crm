@@ -12,6 +12,7 @@ import {
   MasterCompanyView,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { encryptId } from "../../../components/common/EncryptionDecryption";
+import { CreateButton } from "../../../components/common/ButtonColors";
 
 const CompanyList = () => {
   const [companyData, setCompanyData] = useState(null);
@@ -184,7 +185,7 @@ const CompanyList = () => {
               </button> */}
               <MasterCompanyCreate
                 onClick={() => navigate("/master/createCompany")}
-                className=" flex flex-row items-center gap-1 text-center text-sm font-[400] cursor-pointer  w-[7rem] text-white bg-blue-600 hover:bg-red-700 p-2 rounded-lg shadow-md"
+                className={CreateButton}
               />
             </div>
           </div>

@@ -12,6 +12,7 @@ import {
   MasterAgenciesView,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { encryptId } from "../../../components/common/EncryptionDecryption";
+import { CreateButton } from "../../../components/common/ButtonColors";
 
 const AgenciesList = () => {
   const [agenciesData, setAgenciesData] = useState(null);
@@ -167,7 +168,7 @@ const AgenciesList = () => {
               </button> */}
               <MasterAgenciesCreate
                 onClick={() => navigate("/master/createAgency")}
-                className=" flex flex-row items-center gap-1 text-center text-sm font-[400] cursor-pointer  w-[6rem] text-white bg-blue-600 hover:bg-red-700 p-2 rounded-lg shadow-md"
+                className={CreateButton}
               />
             </div>
           </div>
