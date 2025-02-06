@@ -86,8 +86,11 @@ const CreateCompany = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => {
-      toast.success("Company Created Sucessfully");
-
+      if (res.data.code == 200) {
+        toast.success(res.data.msg);
+      } else if (res.data.code == 400) {
+        toast.error(res.data.msg);
+      }
       navigate("/master/company-list");
       setCompany({
         company_short: "",
@@ -185,7 +188,6 @@ const CreateCompany = () => {
                 className={inputClass}
                 required
                 maxLength={10}
-
               />
             </div>
 

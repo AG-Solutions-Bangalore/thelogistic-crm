@@ -276,8 +276,11 @@ const EditVechiles = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => {
-      toast.success("Vechile Updated Sucessfully");
-
+      if (res.data.code == 200) {
+        toast.success(res.data.msg);
+      } else if (res.data.code == 400) {
+        toast.error(res.data.msg);
+      }
       navigate("/vehicles-list");
     });
   };

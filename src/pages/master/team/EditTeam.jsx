@@ -196,8 +196,11 @@ const EditTeam = () => {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => {
-      toast.success("Team Updated Sucessfully");
-
+      if (res.data.code == 200) {
+        toast.success(res.data.msg);
+      } else if (res.data.code == 400) {
+        toast.error(res.data.msg);
+      }
       navigate("/master/team-list");
     });
   };
@@ -472,7 +475,6 @@ const EditTeam = () => {
                 type="file"
                 name="user_pan_card"
                 onChange={(e) => setSelectedFile3(e.target.files[0])}
-                
                 className="w-full px-3 py-1 text-xs border rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-500 border-blue-500 file:mr-4 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-xs  file:bg-[#E1F5FA] file:text-black  cursor-pointer  "
               />
               <span className="text-[11px] p-1 ml-2 text-red-900">
