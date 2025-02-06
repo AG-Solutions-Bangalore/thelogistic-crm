@@ -5,6 +5,7 @@ import axios from "axios";
 import BASE_URL from "../../../base/BaseUrl";
 import { toast } from "sonner";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -19,6 +20,8 @@ const status = [
 
 const CompanyEdit = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [company, setCompany] = useState({
     company_short: "",
@@ -36,7 +39,7 @@ const CompanyEdit = () => {
       setIsButtonDisabled(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-company-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-company-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -101,15 +104,18 @@ const CompanyEdit = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-company/${id}`,
+      url: BASE_URL + `/api/web-update-company/${decryptedId}`,
       method: "PUT",
       data,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => {
-      toast.success("Company Updated Sucessfully");
-
+      if (res.data.code == 200) {
+        toast.success(res.data.msg);
+      } else if (res.data.code == 400) {
+        toast.error(res.data.msg);
+      }
       navigate("/master/company-list");
     });
   };

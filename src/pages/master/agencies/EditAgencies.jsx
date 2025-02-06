@@ -5,6 +5,7 @@ import axios from "axios";
 import BASE_URL from "../../../base/BaseUrl";
 import { toast } from "sonner";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -18,6 +19,8 @@ const status = [
 ];
 const EditAgencies = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [agency, setAgency] = useState({
     agency_short: "",
@@ -47,7 +50,7 @@ const EditAgencies = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-agencies-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-agencies-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -213,15 +216,18 @@ const EditAgencies = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-agencies/${id}`,
+      url: BASE_URL + `/api/web-update-agencies/${decryptedId}`,
       method: "PUT",
       data,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     }).then((res) => {
-      toast.success("Agency Updated Sucessfully");
-
+      if (res.data.code == 200) {
+        toast.success(res.data.msg);
+      } else if (res.data.code == 400) {
+        toast.error(res.data.msg);
+      }
       navigate("/master/agencies-list");
     });
   };
