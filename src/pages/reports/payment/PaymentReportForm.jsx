@@ -7,7 +7,11 @@ import SelectInput from "../../../components/common/SelectField";
 import { useNavigate } from "react-router-dom";
 import { IconInfoCircle } from "@tabler/icons-react";
 import moment from "moment";
-import { ReportPaymentDownload, ReportPaymentView } from "../../../components/buttonIndex/ButtonComponents";
+import {
+  ReportPaymentDownload,
+  ReportPaymentView,
+} from "../../../components/buttonIndex/ButtonComponents";
+import { CreateButton } from "../../../components/common/ButtonColors";
 
 function PaymentReportForm() {
   const navigate = useNavigate();
@@ -199,18 +203,15 @@ function PaymentReportForm() {
             </div> */}
             <div className="flex justify-center py-4">
               <ReportPaymentDownload
-                className=" text-center text-sm font-[400 ] cursor-pointer hover:animate-pulse w-36 text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
+                className={`${CreateButton} mx-4`}
                 onClick={onSubmit}
               >
                 {" "}
-           
               </ReportPaymentDownload>
               <ReportPaymentView
-                className=" text-center text-sm font-[400 ] cursor-pointer hover:animate-pulse w-36 text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md ml-4"
+                className={`${CreateButton}`}
                 onClick={handleview}
-              >
-        
-              </ReportPaymentView>
+              ></ReportPaymentView>
             </div>
           </form>
         </div>

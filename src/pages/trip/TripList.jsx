@@ -7,7 +7,12 @@ import axios from "axios";
 import BASE_URL from "../../base/BaseUrl";
 import ViewTrip from "./ViewTrip";
 import moment from "moment/moment";
-import { MasterTripCreate, MasterTripEdit, MasterTripView } from "../../components/buttonIndex/ButtonComponents";
+import {
+  MasterTripCreate,
+  MasterTripEdit,
+  MasterTripView,
+} from "../../components/buttonIndex/ButtonComponents";
+import { CreateButton } from "../../components/common/ButtonColors";
 
 const TripList = () => {
   const [tripData, setTripData] = useState(null);
@@ -71,7 +76,7 @@ const TripList = () => {
           <div className="flex flex-col">
             <span className="text-black font-semibold text-xs">
               {row.original.trip_date
-                ? moment(row.original.trip_date).format("DD-MMM-YYYY")
+                ? moment(row.original.trip_date).format("DD-MM-YYYY")
                 : ""}
             </span>
 
@@ -80,6 +85,13 @@ const TripList = () => {
             </span>
           </div>
         ),
+        filterFn: (row, columnId, filterValue) => {
+          const combinedValue = `${row.original.trip_date} - ${row.original.trip_vehicle}`;
+
+          return combinedValue
+            .toLowerCase()
+            .includes(filterValue.toLowerCase());
+        },
       },
       // {
       //   accessorKey: "trip_company",
@@ -220,9 +232,8 @@ const TripList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer " />
               </div> */}
               <MasterTripEdit
-               onClick={() => navigate(`/edit-trip/${id}`)}
+                onClick={() => navigate(`/edit-trip/${id}`)}
                 className="flex items-center space-x-2"
-              
               />
               {/* <div
                 onClick={() => {
@@ -235,7 +246,7 @@ const TripList = () => {
                 <IconEye className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <MasterTripView
-                 onClick={() => {
+                onClick={() => {
                   setSelectedVehicleId(id);
                   setIsViewExpanded(true);
                 }}
@@ -280,9 +291,8 @@ const TripList = () => {
                 <IconPlus className="w-4 h-4" /> Trip
               </button> */}
               <MasterTripCreate
-                className=" flex flex-row items-center gap-1 text-center text-sm font-[400] cursor-pointer  w-[5rem] text-white bg-blue-600 hover:bg-red-700 p-2 rounded-lg shadow-md"
+                className={CreateButton}
                 onClick={() => navigate(`/createTrip`)}
-              
               />
             </div>
           </div>

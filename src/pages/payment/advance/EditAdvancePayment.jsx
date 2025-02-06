@@ -12,6 +12,10 @@ import {
   DialogFooter,
   DialogHeader,
 } from "@material-tailwind/react";
+import {
+  BackButton,
+  CreateButton,
+} from "../../../components/common/ButtonColors";
 
 const details_type = [
   {
@@ -438,7 +442,7 @@ const EditAdvancePayment = () => {
           <div className="flex flex-wrap gap-4 justify-start">
             <button
               type="submit"
-              className="text-center text-sm font-[400] cursor-pointer  w-36 text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
+              className={CreateButton}
               disabled={isButtonDisabled}
             >
               {isButtonDisabled ? "Updating..." : "Update"}
@@ -446,7 +450,7 @@ const EditAdvancePayment = () => {
 
             <button
               type="button"
-              className="text-center text-sm font-[400] cursor-pointer  w-36 text-white bg-orange-600 hover:bg-oran ge-400 p-2 rounded-lg shadow-md"
+              className={BackButton}
               onClick={() => {
                 setOpenDialog(true);
               }}
@@ -455,7 +459,7 @@ const EditAdvancePayment = () => {
             </button>
             <button
               type="button"
-              className="text-center text-sm font-[400] cursor-pointer  w-36 text-white bg-red-600 hover:bg-red-400 p-2 rounded-lg shadow-md"
+              className={BackButton}
               onClick={() => {
                 navigate("/payment/advance-list");
               }}
@@ -477,14 +481,14 @@ const EditAdvancePayment = () => {
 
         <DialogFooter>
           <button
-            className="text-center text-sm font-[400] cursor-pointer hover:animate-pulse w-36 text-white bg-red-600 hover:bg-red-400 p-2 rounded-lg shadow-md mr-2"
+            className={`${BackButton} mx-2`}
             onClick={() => setOpenDialog(false)}
             aria-label="Cancel logout"
           >
             <span>Cancel</span>
           </button>
           <button
-            className="text-center text-sm font-[400] cursor-pointer hover:animate-pulse w-36 text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
+            className={CreateButton}
             onClick={onDelete}
             aria-label="Confirm logout"
           >

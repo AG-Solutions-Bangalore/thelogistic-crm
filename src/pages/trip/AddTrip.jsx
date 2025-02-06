@@ -6,6 +6,7 @@ import axios from "axios";
 import BASE_URL from "../../base/BaseUrl";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
 import Select from "react-select";
+import { BackButton, CreateButton } from "../../components/common/ButtonColors";
 const AddTrip = () => {
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
@@ -301,38 +302,44 @@ const AddTrip = () => {
     };
 
     setIsButtonDisabled(true);
-    axios({
-      url: BASE_URL + "/api/web-create-trip",
-      method: "POST",
-      data,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    }).then((res) => {
+    try {
+      const res = await axios({
+        url: BASE_URL + "/api/web-create-trip",
+        method: "POST",
+        data,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
       if (res.data.code == 200) {
         toast.success(res.data.msg);
-      } else if (res.data.code == 400) {
+        navigate("/trip-list");
+        setTrip({
+          trip_date: todayback,
+          trip_year: "2023-24",
+          trip_branch: "",
+          trip_company: "",
+          trip_driver: "",
+          vehicle_driver: "",
+          trip_vehicle: "",
+          trip_agency: "",
+          trip_hsd: "",
+          trip_advance: "",
+          trip_mileage: "",
+          trip_hsd_supplied: "",
+          trip_supplier: "",
+          trip_remarks: "",
+          trip_km: "",
+        });
+      } else {
         toast.error(res.data.msg);
       }
-      navigate("/trip-list");
-      setTrip({
-        trip_date: todayback,
-        trip_year: "2023-24",
-        trip_branch: "",
-        trip_company: "",
-        trip_driver: "",
-        vehicle_driver: "",
-        trip_vehicle: "",
-        trip_agency: "",
-        trip_hsd: "",
-        trip_advance: "",
-        trip_mileage: "",
-        trip_hsd_supplied: "",
-        trip_supplier: "",
-        trip_remarks: "",
-        trip_km: "",
-      });
-    });
+    } catch (error) {
+      toast.error(error.response?.data?.msg || "Something went wrong!");
+    } finally {
+      setIsButtonDisabled(false);
+    }
   };
 
   const FormLabel = ({ children, required }) => (
@@ -600,7 +607,7 @@ const AddTrip = () => {
           <div className="flex flex-wrap gap-4 justify-start">
             <button
               type="submit"
-              className="text-center text-sm font-[400] cursor-pointer  w-36 text-white bg-blue-600 hover:bg-green-700 p-2 rounded-lg shadow-md"
+              className={CreateButton}
               disabled={isButtonDisabled}
             >
               {isButtonDisabled ? "Sumbitting..." : "Sumbit"}
@@ -608,7 +615,7 @@ const AddTrip = () => {
 
             <button
               type="button"
-              className="text-center text-sm font-[400] cursor-pointer  w-36 text-white bg-red-600 hover:bg-red-400 p-2 rounded-lg shadow-md"
+              className={BackButton}
               onClick={() => {
                 navigate("/trip-list");
               }}

@@ -1,6 +1,7 @@
 import { Edit, Eye, Plus, PlusCircle, Trash, Truck, View } from "lucide-react";
 import React from "react";
 import { checkPermission } from "./checkPermission";
+import { EditButton } from "../common/ButtonColors";
 
 const getStaticPermissions = () => {
   const buttonPermissions = localStorage.getItem("buttonControl");
@@ -25,7 +26,7 @@ export const VechilesEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Vehicles">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -39,7 +40,7 @@ export const VechilesView = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Side View">
-      <Eye className="h-4 w-4 text-blue-500" />
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -84,12 +85,11 @@ export const VechilesPVGototyre = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className}>
-     
-     Go to Tyre Page
+      Go to Tyre Page
     </button>
   );
 };
-VechilesPVGototyre .page = "Vehicles";
+VechilesPVGototyre.page = "Vehicles";
 
 export const VechilesTruck = ({ onClick, className }) => {
   const userId = localStorage.getItem("id") || "";
@@ -100,7 +100,7 @@ export const VechilesTruck = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Truck View">
-      <Truck className="h-4 w-4 text-blue-500" />
+      <Truck className={EditButton} />
     </button>
   );
 };
@@ -117,7 +117,7 @@ export const MasterCompanyEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Company">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -131,7 +131,7 @@ export const MasterCompanyView = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="View Company">
-      <Eye className="h-4 w-4 text-blue-500" />
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -164,7 +164,7 @@ export const MasterBranchEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Branch">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -197,7 +197,7 @@ export const MasterTyreMakeEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Tyre Make">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -230,7 +230,7 @@ export const MasterServiceTypeEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Service Type">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -263,7 +263,7 @@ export const MasterTeamEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Team">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -277,7 +277,7 @@ export const MasterTeamView = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="View Team">
-      <Eye className="h-4 w-4 text-blue-500" />
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -310,7 +310,7 @@ export const MasterDriverEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Driver">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -324,7 +324,7 @@ export const MasterDriverView = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="View Driver">
-      <Eye className="h-4 w-4 text-blue-500" />
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -357,7 +357,7 @@ export const MasterAgenciesEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Agencies">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -371,7 +371,7 @@ export const MasterAgenciesView = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="View Agencies">
-      <Eye className="h-4 w-4 text-blue-500" />
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -404,7 +404,7 @@ export const MasterVendorEdit = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Edit Vendor">
-      <Edit className="h-4 w-4 text-blue-500" />
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -418,7 +418,7 @@ export const MasterVendorView = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="View Vendor">
-      <Eye className="h-4 w-4 text-blue-500" />
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -450,13 +450,8 @@ export const MasterPurchaseEdit = ({ onClick, className }) => {
   }
 
   return (
-    <button
-   
-      onClick={onClick}
-      className={className}
-      title="Edit Purchase"
-    >
-      <Edit className="h-4 w-4 text-blue-500" />
+    <button onClick={onClick} className={className} title="Edit Purchase">
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -469,13 +464,8 @@ export const MasterPurchaseView = ({ onClick, className }) => {
   }
 
   return (
-    <button
-   
-      onClick={onClick}
-      className={className}
-      title="View Purchase"
-    >
-      <Eye  className="h-4 w-4 text-blue-500" />
+    <button onClick={onClick} className={className} title="View Purchase">
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -491,7 +481,6 @@ export const MasterPurchaseCreate = ({ onClick, className }) => {
   return (
     <button onClick={onClick} className={className}>
       <Plus className="h-4 w-4 " />
-      
       Purchase Tyre
     </button>
   );
@@ -508,13 +497,8 @@ export const MasterFittedTyreView = ({ onClick, className }) => {
   }
 
   return (
-    <button
-   
-      onClick={onClick}
-      className={className}
-      title="View Fitted Tyre"
-    >
-      <Eye  className="h-4 w-4 text-blue-500" />
+    <button onClick={onClick} className={className} title="View Fitted Tyre">
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -530,13 +514,8 @@ export const MasterUnderInspectEdit = ({ onClick, className }) => {
   }
 
   return (
-    <button
-   
-      onClick={onClick}
-      className={className}
-      title="Updated Tyre"
-    >
-      <Edit className="h-4 w-4 text-blue-500" />
+    <button onClick={onClick} className={className} title="Updated Tyre">
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -551,7 +530,7 @@ export const MasterUnderInspectDelete = ({ onClick, className }) => {
 
   return (
     <button onClick={onClick} className={className} title="Delete">
-      <Trash className="h-4 w-4 text-blue-500" />
+      <Trash className={EditButton} />
     </button>
   );
 };
@@ -567,13 +546,8 @@ export const MasterTripEdit = ({ onClick, className }) => {
   }
 
   return (
-    <button
-   
-      onClick={onClick}
-      className={className}
-      title="Edit Trip"
-    >
-      <Edit className="h-4 w-4 text-blue-500" />
+    <button onClick={onClick} className={className} title="Edit Trip">
+      <Edit className={EditButton} />
     </button>
   );
 };
@@ -586,13 +560,8 @@ export const MasterTripView = ({ onClick, className }) => {
   }
 
   return (
-    <button
-   
-      onClick={onClick}
-      className={className}
-      title="View Trip"
-    >
-      <Eye  className="h-4 w-4 text-blue-500" />
+    <button onClick={onClick} className={className} title="View Trip">
+      <Eye className={EditButton} />
     </button>
   );
 };
@@ -1255,7 +1224,6 @@ export default {
   MasterTripView,
   MasterTripEdit,
 
-  
   PaymentBranchCreate,
   PaymentBranchEdit,
   PaymentAdvanceCreate,

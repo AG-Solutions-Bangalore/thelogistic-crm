@@ -11,6 +11,7 @@ import {
   ServiceEdit,
   ServiceView,
 } from "../../components/buttonIndex/ButtonComponents";
+import { CreateButton } from "../../components/common/ButtonColors";
 
 const ServicesList = () => {
   const [serviceData, setServiceData] = useState(null);
@@ -181,7 +182,7 @@ const ServicesList = () => {
               </button> */}
               <ServiceCreate
                 onClick={() => navigate("/createService")}
-                className=" flex flex-row items-center justify-center gap-1 text-center text-sm font-[400] cursor-pointer  w-[7rem] text-white bg-blue-600 hover:bg-red-700 p-2 rounded-lg shadow-md"
+                className={CreateButton}
               />
             </div>
           </div>
