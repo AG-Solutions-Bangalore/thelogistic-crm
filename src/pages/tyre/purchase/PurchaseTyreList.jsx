@@ -12,6 +12,7 @@ import {
   MasterPurchaseView,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../../components/common/ButtonColors";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 
 const PurchaseTyreList = () => {
   const [purchaseTyreData, setPurchaseTyreData] = useState(null);
@@ -122,7 +123,14 @@ const PurchaseTyreList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <MasterPurchaseEdit
-                onClick={() => navigate(`/tyre/purchase-edit/${id}`)}
+                // onClick={() => navigate(`/tyre/purchase-edit/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(
+                    `/tyre/purchase-edit/${encodeURIComponent(encryptedId)}`
+                  );
+                }}
                 className="flex items-center space-x-2"
               />
               {/* <div
@@ -175,7 +183,7 @@ const PurchaseTyreList = () => {
               </button> */}
               <MasterPurchaseCreate
                 onClick={() => navigate("/tyre/createPurchase")}
-                className={`${CreateButton} w-40`}
+                className={`${CreateButton} w-full`}
               />
             </div>
           </div>

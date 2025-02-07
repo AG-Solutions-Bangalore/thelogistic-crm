@@ -9,6 +9,7 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -34,6 +35,8 @@ const userType = [
 
 const EditTeam = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [team, setTeam] = useState({
     full_name: "",
@@ -71,7 +74,7 @@ const EditTeam = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-team-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-team-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -193,7 +196,7 @@ const EditTeam = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-team/${id}?_method=PUT`,
+      url: BASE_URL + `/api/web-update-team/${decryptedId}?_method=PUT`,
       method: "POST",
       data,
       headers: {

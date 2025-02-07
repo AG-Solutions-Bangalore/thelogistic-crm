@@ -9,6 +9,7 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -42,6 +43,8 @@ const salaryType = [
 
 const BrandEdit = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [branch, setBranch] = useState({
     branch_name: "",
@@ -62,7 +65,7 @@ const BrandEdit = () => {
       setIsButtonDisabled(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-branch-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-branch-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -189,7 +192,7 @@ const BrandEdit = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-branch/${id}`,
+      url: BASE_URL + `/api/web-update-branch/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

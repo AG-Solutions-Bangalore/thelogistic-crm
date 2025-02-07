@@ -16,6 +16,7 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const details_type = [
   {
@@ -38,6 +39,7 @@ const details_type = [
 
 const EditAdvancePayment = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
 
   const navigate = useNavigate();
   const [payment, setPayment] = useState({
@@ -65,7 +67,7 @@ const EditAdvancePayment = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-payment-details-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-payment-details-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -212,7 +214,7 @@ const EditAdvancePayment = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-payment-details/${id}`,
+      url: BASE_URL + `/api/web-update-payment-details/${decryptedId}`,
       method: "PUT",
       data,
       headers: {
@@ -237,7 +239,7 @@ const EditAdvancePayment = () => {
   const onDelete = (e) => {
     e.preventDefault();
     let data = {
-      payment_details_id: id,
+      payment_details_id: decryptedId,
     };
 
     var v = document.getElementById("addIndiv").checkValidity();

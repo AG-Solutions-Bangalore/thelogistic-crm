@@ -12,6 +12,7 @@ import {
   MasterDriverView,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../../components/common/ButtonColors";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 
 const DriverList = () => {
   const [driverData, setDriverData] = useState(null);
@@ -96,7 +97,14 @@ const DriverList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <MasterDriverEdit
-                onClick={() => navigate(`/master/driver-edit/${id}`)}
+                // onClick={() => navigate(`/master/driver-edit/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(
+                    `/master/driver-edit/${encodeURIComponent(encryptedId)}`
+                  );
+                }}
                 className="flex items-center space-x-2"
               />
               {/* <div

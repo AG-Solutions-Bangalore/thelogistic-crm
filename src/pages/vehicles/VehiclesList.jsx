@@ -23,6 +23,7 @@ import {
   VechilesView,
 } from "../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../components/common/ButtonColors";
+import { encryptId } from "../../components/common/EncryptionDecryption";
 
 const VehiclesList = () => {
   const [vehiclesData, setVehiclesData] = useState(null);
@@ -237,6 +238,14 @@ const VehiclesList = () => {
               >
                 <IconEye className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
+              {/* <VechilesView
+                onClick={() => {
+                  setSelectedVehicleId(id);
+                  setIsViewExpanded(true);
+                }}
+                
+                className="flex items-center space-x-2"
+              /> */}
               <VechilesView
                 onClick={() => {
                   setSelectedVehicleId(id);
@@ -254,8 +263,13 @@ const VehiclesList = () => {
               </div> */}
 
               <VechilesEdit
-                onClick={() => navigate(`/vechile-edit/${id}`)}
+                // onClick={() => navigate(`/vechile-edit/${id}`)}
                 className="flex items-center space-x-2"
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(`/vechile-edit/${encodeURIComponent(encryptedId)}`);
+                }}
               />
               {/* <div
                 onClick={() => navigate(`/vechile-view/${id}`)}
@@ -264,7 +278,13 @@ const VehiclesList = () => {
               >
                 <IconEye className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
-              <a href={`/truckdetails-viewall/${id}`} rel="noopener noreferrer">
+              {/* <a href={`/truckdetails-viewall/${id}`} rel="noopener noreferrer"> */}
+              <a
+                href={`/truckdetails-viewall/${encodeURIComponent(
+                  encryptId(id)
+                )}`}
+                rel="noopener noreferrer"
+              >
                 {/* <div
                  
                 className="flex items-center space-x-2"

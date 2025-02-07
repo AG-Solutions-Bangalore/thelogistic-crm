@@ -12,6 +12,7 @@ import {
   ServiceView,
 } from "../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../components/common/ButtonColors";
+import { encryptId } from "../../components/common/EncryptionDecryption";
 
 const ServicesList = () => {
   const [serviceData, setServiceData] = useState(null);
@@ -127,7 +128,12 @@ const ServicesList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <ServiceEdit
-                onClick={() => navigate(`/service-edit/${id}`)}
+                // onClick={() => navigate(`/service-edit/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(`/service-edit/${encodeURIComponent(encryptedId)}`);
+                }}
                 className=" h-5 w-5 text-blue-500"
               />
               {/* <div
@@ -139,7 +145,12 @@ const ServicesList = () => {
               </div> */}
 
               <ServiceView
-                onClick={() => navigate(`/service-view/${id}`)}
+                // onClick={() => navigate(`/service-view/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(`/service-view/${encodeURIComponent(encryptedId)}`);
+                }}
                 className=" h-5 w-5 text-blue-500"
               />
             </div>

@@ -8,6 +8,7 @@ import BASE_URL from "../../base/BaseUrl";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
 import Select from "react-select";
 import { BackButton, CreateButton } from "../../components/common/ButtonColors";
+import { decryptId } from "../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -37,6 +38,7 @@ const status = [
 ];
 const EditTrip = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
 
   const navigate = useNavigate();
   const [trip, setTrip] = useState({
@@ -71,7 +73,7 @@ const EditTrip = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-trip-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-trip-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -331,7 +333,7 @@ const EditTrip = () => {
     setIsButtonDisabled(true);
     try {
       const res = await axios.put(
-        `${BASE_URL}/api/web-update-trip/${id}`,
+        `${BASE_URL}/api/web-update-trip/${decryptedId}`,
         data,
         {
           headers: {

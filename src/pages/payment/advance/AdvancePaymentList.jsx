@@ -11,6 +11,7 @@ import {
   PaymentAdvanceEdit,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../../components/common/ButtonColors";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 
 const AdvancePaymentList = () => {
   const [advancePaymentData, setAdvancePaymentData] = useState(null);
@@ -97,7 +98,14 @@ const AdvancePaymentList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <PaymentAdvanceEdit
-                onClick={() => navigate(`/payment/edit-advance/${id}`)}
+                // onClick={() => navigate(`/payment/edit-advance/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(
+                    `/payment/edit-advance/${encodeURIComponent(encryptedId)}`
+                  );
+                }}
                 className="h-5 w-5 text-blue-500 cursor-pointer"
               ></PaymentAdvanceEdit>
             </div>

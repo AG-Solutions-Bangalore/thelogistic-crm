@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
 import Select from "react-select";
 import { BackButton, CreateButton } from "../../components/common/ButtonColors";
+import { decryptId } from "../../components/common/EncryptionDecryption";
 
 const vehicleType = [
   {
@@ -36,6 +37,7 @@ const status = [
 
 const EditVechiles = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
 
   const navigate = useNavigate();
   const [vehicles, setVehicles] = useState({
@@ -67,7 +69,7 @@ const EditVechiles = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-vehicles-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-vehicles-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -270,7 +272,7 @@ const EditVechiles = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-vehicles/${id}`,
+      url: BASE_URL + `/api/web-update-vehicles/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

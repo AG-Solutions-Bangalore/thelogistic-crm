@@ -11,6 +11,7 @@ import {
   PaymentBranchEdit,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../../components/common/ButtonColors";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 
 const BranchPaymentList = () => {
   const [branchPaymentData, setBranchPaymentData] = useState(null);
@@ -88,7 +89,14 @@ const BranchPaymentList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <PaymentBranchEdit
-                onClick={() => navigate(`/payment/edit-branchpay/${id}`)}
+                // onClick={() => navigate(`/payment/edit-branchpay/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(
+                    `/payment/edit-branchpay/${encodeURIComponent(encryptedId)}`
+                  );
+                }}
                 className="h-5 w-5 text-blue-500 cursor-pointer"
                 // title="Edit"
               >

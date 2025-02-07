@@ -9,6 +9,7 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -62,6 +63,8 @@ const VType_2 = [
 const EditVendor = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const decryptedId = decryptId(id);
+
   const [vendor, setVendor] = useState({
     vendor_name: "",
     vendor_type: "",
@@ -84,7 +87,7 @@ const EditVendor = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-vendor-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-vendor-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -169,7 +172,7 @@ const EditVendor = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-vendor/${id}`,
+      url: BASE_URL + `/api/web-update-vendor/${decryptedId}`,
       method: "PUT",
       data,
       headers: {
