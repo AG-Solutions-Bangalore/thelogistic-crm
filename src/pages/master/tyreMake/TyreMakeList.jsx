@@ -10,6 +10,7 @@ import {
   MasterTyreMakeEdit,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../../components/common/ButtonColors";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 
 const TyreMakeList = () => {
   const [tyreMakeData, setTyreMakeData] = useState(null);
@@ -73,7 +74,14 @@ const TyreMakeList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <MasterTyreMakeEdit
-                onClick={() => navigate(`/master/tyremake-edit/${id}`)}
+                // onClick={() => navigate(`/master/tyremake-edit/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(
+                    `/master/tyremake-edit/${encodeURIComponent(encryptedId)}`
+                  );
+                }}
                 className="flex items-center space-x-2"
               />
             </div>

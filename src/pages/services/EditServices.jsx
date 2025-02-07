@@ -7,6 +7,7 @@ import axios from "axios";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
 import Select from "react-select";
 import { BackButton, CreateButton } from "../../components/common/ButtonColors";
+import { decryptId } from "../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -25,6 +26,8 @@ const status = [
 
 const EditServices = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [service, setService] = useState({
     service_date: "",
@@ -61,7 +64,7 @@ const EditServices = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-services-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-services-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -232,7 +235,7 @@ const EditServices = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-services/${id}`,
+      url: BASE_URL + `/api/web-update-services/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

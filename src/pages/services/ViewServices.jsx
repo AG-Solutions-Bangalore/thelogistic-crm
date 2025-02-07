@@ -11,6 +11,7 @@ import { useReactToPrint } from "react-to-print";
 import moment from "moment";
 import axios from "axios";
 import { ReportDate, ReportTitle } from "../../components/common/ReportTitle";
+import { decryptId } from "../../components/common/EncryptionDecryption";
 
 // Skeleton Loader Component
 const SkeletonLoader = () => {
@@ -73,6 +74,8 @@ const SkeletonLoader = () => {
 };
 const ViewServices = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const componentRef = useRef(null);
 
@@ -175,7 +178,7 @@ const ViewServices = () => {
         const token = localStorage.getItem("token");
 
         const response = await axios.get(
-          `${BASE_URL}/api/web-fetch-services-by-id/${id}`,
+          `${BASE_URL}/api/web-fetch-services-by-id/${decryptedId}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }

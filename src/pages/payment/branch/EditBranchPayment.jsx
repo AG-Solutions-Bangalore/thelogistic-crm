@@ -9,9 +9,12 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const EditBranchPayment = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [payment, setPayment] = useState({
     payment_date: "",
@@ -26,7 +29,7 @@ const EditBranchPayment = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-payment-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-payment-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -106,7 +109,7 @@ const EditBranchPayment = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-payment/${id}`,
+      url: BASE_URL + `/api/web-update-payment/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

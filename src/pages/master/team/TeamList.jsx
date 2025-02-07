@@ -12,6 +12,7 @@ import {
   MasterTeamView,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../../components/common/ButtonColors";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 
 const TeamList = () => {
   const [teamData, setTeamData] = useState(null);
@@ -102,9 +103,17 @@ const TeamList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer" />
               </div> */}
               <MasterTeamEdit
-                onClick={() => navigate(`/master/team-edit/${id}`)}
+                // onClick={() => navigate(`/master/team-edit/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(
+                    `/master/team-edit/${encodeURIComponent(encryptedId)}`
+                  );
+                }}
                 className="flex items-center space-x-2"
               />
+
               {/* <div
                 onClick={() => {
                   setSelectedVehicleId(id);

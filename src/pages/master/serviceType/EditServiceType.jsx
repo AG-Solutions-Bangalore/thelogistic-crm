@@ -9,6 +9,7 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -23,6 +24,8 @@ const status = [
 
 const EditServiceType = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [serviceTypes, setServiceTypes] = useState({
     service_types: "",
@@ -34,7 +37,7 @@ const EditServiceType = () => {
       setIsButtonDisabled(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-service-types-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-service-types-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -77,7 +80,7 @@ const EditServiceType = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-service-types/${id}`,
+      url: BASE_URL + `/api/web-update-service-types/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

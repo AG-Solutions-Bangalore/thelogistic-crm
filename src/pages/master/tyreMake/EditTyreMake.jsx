@@ -9,6 +9,7 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -23,6 +24,8 @@ const status = [
 
 const EditTyreMake = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [tyreMake, setTyreMake] = useState({
     tyre_make: "",
@@ -34,7 +37,7 @@ const EditTyreMake = () => {
       setIsButtonDisabled(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-tyre-make-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-tyre-make-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -77,7 +80,7 @@ const EditTyreMake = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-tyre-make/${id}`,
+      url: BASE_URL + `/api/web-update-tyre-make/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

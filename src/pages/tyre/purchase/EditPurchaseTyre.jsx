@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import BASE_URL from "../../../base/BaseUrl";
 import { IconArrowBack, IconInfoCircle } from "@tabler/icons-react";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const TMake = [
   {
@@ -20,6 +21,8 @@ const TMake = [
 
 const EditPurchaseTyre = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [tyre, setTyre] = useState({
     tyre_date: "",
@@ -52,7 +55,7 @@ const EditPurchaseTyre = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-tyre-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-tyre-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -228,7 +231,7 @@ const EditPurchaseTyre = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-tyre/${id}`,
+      url: BASE_URL + `/api/web-update-tyre/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

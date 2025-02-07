@@ -11,6 +11,7 @@ import {
   PaymentDetailsEdit,
 } from "../../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../../components/common/ButtonColors";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 
 const DetailsPaymentList = () => {
   const [deatailPaymentData, setDeatailPaymentData] = useState(null);
@@ -95,7 +96,14 @@ const DetailsPaymentList = () => {
           return (
             <div className="flex gap-2">
               <PaymentDetailsEdit
-                onClick={() => navigate(`/payment/edit-details/${id}`)}
+                // onClick={() => navigate(`/payment/edit-details/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(
+                    `/payment/edit-details/${encodeURIComponent(encryptedId)}`
+                  );
+                }}
                 className=" text-blue-500 cursor-pointer"
               ></PaymentDetailsEdit>
             </div>

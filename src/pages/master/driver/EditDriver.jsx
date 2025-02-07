@@ -9,6 +9,7 @@ import {
   BackButton,
   CreateButton,
 } from "../../../components/common/ButtonColors";
+import { decryptId } from "../../../components/common/EncryptionDecryption";
 
 const status = [
   {
@@ -33,6 +34,8 @@ const vehicleType = [
 ];
 const EditDriver = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [driver, setDriver] = useState({
     full_name: "",
@@ -73,7 +76,7 @@ const EditDriver = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-driver-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-driver-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -190,7 +193,7 @@ const EditDriver = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-driver/${id}?_method=PUT`,
+      url: BASE_URL + `/api/web-update-driver/${decryptedId}?_method=PUT`,
       method: "POST",
       data,
       headers: {

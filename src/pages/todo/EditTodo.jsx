@@ -6,9 +6,12 @@ import axios from "axios";
 import BASE_URL from "../../base/BaseUrl";
 import { toast } from "sonner";
 import { BackButton, CreateButton } from "../../components/common/ButtonColors";
+import { decryptId } from "../../components/common/EncryptionDecryption";
 
 const EditTodo = () => {
   const { id } = useParams();
+  const decryptedId = decryptId(id);
+
   const navigate = useNavigate();
   const [todo, setTodo] = useState({
     todo_branch: "",
@@ -22,7 +25,7 @@ const EditTodo = () => {
       setLoading(true);
       const token = localStorage.getItem("token");
       const response = await axios.get(
-        `${BASE_URL}/api/web-fetch-todo-by-id/${id}`,
+        `${BASE_URL}/api/web-fetch-todo-by-id/${decryptedId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -83,7 +86,7 @@ const EditTodo = () => {
 
     setIsButtonDisabled(true);
     axios({
-      url: BASE_URL + `/api/web-update-todo/${id}`,
+      url: BASE_URL + `/api/web-update-todo/${decryptedId}`,
       method: "PUT",
       data,
       headers: {

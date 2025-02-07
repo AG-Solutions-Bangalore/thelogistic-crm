@@ -13,6 +13,7 @@ import {
   MasterTripView,
 } from "../../components/buttonIndex/ButtonComponents";
 import { CreateButton } from "../../components/common/ButtonColors";
+import { encryptId } from "../../components/common/EncryptionDecryption";
 
 const TripList = () => {
   const [tripData, setTripData] = useState(null);
@@ -232,7 +233,12 @@ const TripList = () => {
                 <IconEdit className="h-5 w-5 text-blue-500 cursor-pointer " />
               </div> */}
               <MasterTripEdit
-                onClick={() => navigate(`/edit-trip/${id}`)}
+                // onClick={() => navigate(`/edit-trip/${id}`)}
+                onClick={() => {
+                  const encryptedId = encryptId(id);
+
+                  navigate(`/edit-trip/${encodeURIComponent(encryptedId)}`);
+                }}
                 className="flex items-center space-x-2"
               />
               {/* <div
