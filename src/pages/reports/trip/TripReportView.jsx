@@ -21,6 +21,7 @@ import {
   ReportDate,
   ReportTitle,
 } from "../../../components/common/ReportTitle";
+import { encryptId } from "../../../components/common/EncryptionDecryption";
 const printStyles = `
   @media print {
 
@@ -352,7 +353,7 @@ const TripReportView = () => {
               />
               <IconArrowBack
                 className="cursor-pointer text-gray-600 hover:text-red-600"
-                onClick={() => navigate("/report-trip-form")}
+                onClick={() => navigate(-1)}
                 title="Go Back"
               />
             </div>
@@ -405,9 +406,19 @@ const TripReportView = () => {
                           {item.trip_branch || "-"}
                         </td>
                         <td className="p-1 text-xs border border-black text-blue-500 text-center">
-                          <Link to={"/edit-trip/" + item.id}>
+                          <span
+                            // to={"/edit-trip/" + item.id}
+                            className="cursor-pointer"
+                            onClick={() => {
+                              const encryptedId = encryptId(item.id);
+
+                              navigate(
+                                `/edit-trip/${encodeURIComponent(encryptedId)}`
+                              );
+                            }}
+                          >
                             {item.trip_vehicle}
-                          </Link>
+                          </span>
                         </td>
                         <td className="p-1 text-xs border border-black">
                           {item.trip_driver || "-"}
@@ -524,9 +535,7 @@ const TripReportView = () => {
             <div className="hidden print:block">
               <div className="trademark flex justify-between items-center mt-4 ">
                 <h2 className="text-xs font-medium px-1">{ReportTitle}</h2>
-                <h2 className="text-xs font-medium px-5">
-                  {ReportDate}{" "}
-                </h2>
+                <h2 className="text-xs font-medium px-5">{ReportDate} </h2>
               </div>
             </div>
           </div>
