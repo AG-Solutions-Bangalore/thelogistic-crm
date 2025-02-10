@@ -379,7 +379,7 @@ function ServiceReportForm() {
                 onClick={handleview}
               ></ReportServicesView>
               <ReportServicesDetailsDownload
-                className={`${CreateButton} mx-4 w-40`}
+                className={`${CreateButton} mx-4 w-[170px]`}
                 onClick={onDetailSubmit}
               ></ReportServicesDetailsDownload>
               <ReportServicesDetailsView
