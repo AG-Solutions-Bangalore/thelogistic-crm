@@ -109,7 +109,7 @@ const NavItem = memo(({ item, level, pathDirect, hideMenu, isCollapsed }) => {
   const SubItemStyled = styled(ListItemButton)(() => ({
     whiteSpace: "nowrap",
     marginBottom: "2px",
-    padding: "5px 10px 5px 0",
+    padding: " 0",
     borderRadius: `30px`,
     backgroundColor: "transparent !important",
     color:
@@ -318,6 +318,7 @@ const NavItem = memo(({ item, level, pathDirect, hideMenu, isCollapsed }) => {
                     sx={{
                       minWidth: "36px",
                       p: "3px 0",
+                    
                       color:
                         pathDirect === subItem?.href
                           ? `${theme.palette.primary.main}!important`

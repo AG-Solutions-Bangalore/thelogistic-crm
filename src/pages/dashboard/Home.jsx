@@ -132,7 +132,7 @@ const Home = () => {
     );
   return (
     <Layout>
-      <div className="container rounded-lg mx-auto px-4 py-6 bg-white">
+      <div className=" rounded-lg mx-auto px-4 py-6 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <DashboardCard
             icon={UserIcon}
