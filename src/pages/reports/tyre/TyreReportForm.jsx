@@ -396,7 +396,7 @@ function TyreReportForm() {
                 onClick={handleview}
               ></ReportTyreView>
               <ReportTyreDetailsDownload
-                className={`${CreateButton} mx-4 w-[170px]`}
+                className={`${CreateButton} mx-4 w-[190px]`}
                 onClick={onDetailSubmit}
               ></ReportTyreDetailsDownload>
               <ReportTyreDetailsView
