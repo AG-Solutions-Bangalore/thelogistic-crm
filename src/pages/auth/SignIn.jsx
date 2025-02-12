@@ -3,11 +3,9 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import BASE_URL from "../../base/BaseUrl";
-import { FormLabel } from "@mui/material";
-import logo from "../../assets/Companylogo/dfc.png";
-import logo1 from "../../assets/Companylogo/logo1.jpg";
 import { ContextPanel } from "../../context/ContextPanel";
 import { toast } from "sonner";
+import projectData from "../../data/projects-data";
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -85,7 +83,6 @@ const SignIn = () => {
         {/* Left Side - Image */}
 
         <div className="hidden  lg:block lg:w-[50%] xl:block xl:w-[70%] h-full">
-          {/* <img src={logo1} alt="img 1" className="h-full w-full object-cover" /> */}
           <img
             src="https://img.freepik.com/free-vector/delivery-logistics-shipment-isometric-flowchart-with-isolated-images-people-transport-vehicles-carrying-parcel-boxes-illustration_1284-29115.jpg?t=st=1738587371~exp=1738590971~hmac=57df6c2c665fb4ae4e27c735d077b729cb3d4c8ee0edbafbeae5956b8d99c8cc&w=996"
             alt="img 1"
@@ -96,10 +93,8 @@ const SignIn = () => {
         <div className="flex-1 flex items-center bg-blue-50 justify-center px-4 lg:px-8 py-12 h-full lg:w-1/2">
           <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg  shadow-blue-600 ">
             <div className="flex justify-center mb-4">
-              {/* <img src={logo} alt="Company Logo" className="w-35 h-35" /> */}
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-700 to-blue-500 text-transparent bg-clip-text text-center my-5">
-                The Logistics
-              </h1>
+              <img src={projectData.signLogo} alt="Company Logo" className="w-35 h-35" />
+             
             </div>
 
             <Typography

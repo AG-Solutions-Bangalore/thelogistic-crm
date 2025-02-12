@@ -1,6 +1,6 @@
 import { styled } from "@mui/material";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/Companylogo/dfc.png";
+import projectData from "../../../data/projects-data";
 
 const LinkStyled = styled(Link)(() => ({
   height: "63px",
@@ -25,10 +25,8 @@ const Logo = ({ isCollapsed }) => {
     <>
       {!isCollapsed ? (
         <LinkStyled to="/home">
-          {/* <img src={logo} alt="logo" className="h-16" priority /> */}
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-700 to-blue-500 text-transparent bg-clip-text text-center my-5">
-            The Logistics
-          </h1>
+          <img src={projectData.sidebarLogo} alt="logo" className="h-16" priority />
+         
         </LinkStyled>
       ) : (
         <LargeLinkStyled to="/home">

@@ -290,8 +290,9 @@ const EditAgencies = () => {
                 name="agency_name"
                 value={agency.agency_name}
                 onChange={(e) => onInputChange(e)}
-                className={`${inputClass} cursor-not-allowed opacity-50`}
+                className={`${inputClass} cursor-not-allowed  `}
                 required
+                disabled
               />
             </div>
           </div>
